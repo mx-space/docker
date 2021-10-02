@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  caddy:
+    container_name: caddy
+    image: caddy:2.4.5
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+    depends_on:
+      - app-kami
+
+  app-kami:
+    container_name: mx-kami
+    image: innei/mx-kami:latest
+    restart: 'on-failure'
+    ports:
+      - '2323:2323'
+    depends_on:
+      - app-server
+    command: npm run start -p 2323
+    environment:
+      - NODE_ENV=production
+      - BASE_URL=https://dev.shizuri.net
+    networks:
+      - app-network
+    links:
+      - app-server
+
+  app-server:
+    container_name: mx-server
+    image: innei/mx-server:latest
+    volumes:
+      - ./data/mx-space:/root/mx-space
+    command: node index.js --redis_host=redis --db_host=mongo --allowed_origins=${ALLOWED_ORIGINS} --jwt_secret=${JWT_SECRET}
+    restart: 'on-failure'
+    ports:
+      - '2333:2333'
+    depends_on:
+      - mongo
+      - redis
+    links:
+      - mongo
+      - redis
+    networks:
+      - app-network
+    environment:
+      - NODE_ENV=production
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - '3344:27017'
+    networks:
+      - app-network
+
+  redis:
+    image: redis
+    container_name: redis
+
+    ports:
+      - '3333:6379'
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
