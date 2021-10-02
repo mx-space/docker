@@ -11,6 +11,8 @@ services:
       - $PWD/Caddyfile:/etc/caddy/Caddyfile
     depends_on:
       - app-kami
+    networks:
+      - app-network
 
   app-kami:
     container_name: mx-kami
