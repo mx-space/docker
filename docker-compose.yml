@@ -22,7 +22,7 @@ services:
       - '2323:2323'
     depends_on:
       - app-server
-    command: npm run start -p 2323
+    command: 'npx next start -p 2323'
     environment:
       - NODE_ENV=production
       - BASE_URL=https://dev.shizuri.net

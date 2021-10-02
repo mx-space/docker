@@ -1,16 +1,16 @@
 dev.shizuri.net {
   encode gzip
   handle /qaqdmin {
-    reverse_proxy localhost:2333
+    reverse_proxy app-server:2333
   }
   handle /api/* {
-    reverse_proxy localhost:2333 {
+    reverse_proxy app-server:2333 {
       header_up Host {host}
       header_up X-Real-IP {remote}
     }
   }
   handle /graphql {
-    reverse_proxy localhost:2333 {
+    reverse_proxy app-server:2333 {
       header_up Host {host}
       header_up X-Real-IP {remote}
     }
@@ -18,14 +18,14 @@ dev.shizuri.net {
   handle /socket.io/* {
     uri strip_prefix /path
     rewrite * /socket.io{path}
-    reverse_proxy localhost:2333 {
+    reverse_proxy app-server:2333 {
       header_up Host {host}
       header_up X-Real-IP {remote}
     }
   }
 
   handle /* {
-    reverse_proxy localhost:2323
+    reverse_proxy app-kami:2323
   }
   tls tukon@gmail.com
 }
