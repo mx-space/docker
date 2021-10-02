@@ -1,0 +1,19 @@
+{
+  "name": "docker",
+  "version": "1.0.0",
+  "description": "Only in test stage.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mx-space/docker.git"
+  },
+  "keywords": [],
+  "author": "Innei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mx-space/docker/issues"
+  },
+  "homepage": "https://github.com/mx-space/docker#readme",
+  "dependencies": {
+    "zx": "^4.2.0"
+  }
+}
