@@ -15,17 +15,22 @@ services:
       - app-network
 
   app-kami:
+    env_file:
+      - .env
     container_name: mx-kami
-    image: innei/mx-kami:latest
     restart: 'on-failure'
     ports:
       - '2323:2323'
+    build:
+      context: ./kami
+      args:
+        NODE_ENV: production
+        BASE_URL: '${BASE_URL}'
     depends_on:
       - app-server
     command: 'npx next start -p 2323'
     environment:
-      - NODE_ENV=production
-      - BASE_URL=https://dev.shizuri.net
+      NODE_ENV: production
     networks:
       - app-network
     links:
