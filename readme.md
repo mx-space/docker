@@ -25,3 +25,27 @@ zx ./build.js
 Your domain name is: innei.ren
 Your email is: tukon@gmail.com
 ```
+
+## 从零开始的部署过程
+
+假设现在你有一台 Ubuntu 的服务器。还没有安装任何环境。并且你已经将域名解析到了服务器。复制以下脚本运行。
+
+```bash
+sudo apt update && sudo apt install git curl vim wget -y
+curl -fsSL https://get.docker.com | bash -s docker
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+docker-compose --version
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+source ~/.bashrc
+nvm install node
+npm i -g yarn zx pnpm
+
+mkdir -p mx
+cd mx
+git clone https://github.com/mx-space/docker --depth=1
+cd docker
+zx ./build.js
+```

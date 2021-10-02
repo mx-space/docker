@@ -1,7 +1,7 @@
 #!/usr/bin/env zx
 
 const { readFileSync, writeFileSync } = require('fs')
-const { $, question } = require('zx')
+// const { $, question } = require('zx')
 
 async function main() {
   const domain = await question('Your domain name is: ')
