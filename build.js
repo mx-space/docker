@@ -18,7 +18,10 @@ async function main() {
       encoding: 'utf-8',
     },
   )
-
+  await $`rm -rf .env`
+  await $`cp .env.example .env`
+  await $`echo BASE_URL=https://${domain} >> .env`
+  await $`rm -rf kami`
   await $`git clone https://github.com/mx-space/kami --depth=1`
   await $`docker-compose build`
   await $`docker-compose up -d`
