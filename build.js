@@ -7,8 +7,8 @@ async function main() {
   const domain = await question('Your domain name is: ')
   const email = await question('Your email is: ')
 
-  const caddy = readFileSync('./Caddyfile', { encoding: 'utf8' })
-
+  const caddy = readFileSync('./Caddyfile.example', { encoding: 'utf8' })
+  await $`rm -f Caddyfile`
   writeFileSync(
     './Caddyfile',
     caddy
