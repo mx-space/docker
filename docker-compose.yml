@@ -26,6 +26,9 @@ services:
       args:
         NODE_ENV: production
         BASE_URL: '${BASE_URL}'
+        NEXT_PUBLIC_TRACKING_ID: '${NEXT_PUBLIC_TRACKING_ID}'
+        NETEASE_PHONE: '${NETEASE_PHONE}'
+        NETEASE_PASSWORD: '${NETEASE_PASSWORD}'
     depends_on:
       - app-server
     command: 'npx next start -p 2323'
