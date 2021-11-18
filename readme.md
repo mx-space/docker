@@ -33,7 +33,11 @@ Your email is: tukon@gmail.com
 ```bash
 sudo apt update && sudo apt install git curl vim wget -y
 curl -fsSL https://get.docker.com | bash -s docker
+# 国内加速
+# curl -sSL https://get.daocloud.io/docker | sh
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# 国内加速
+# sudo curl -L "https://get.daocloud.io/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 docker-compose --version
