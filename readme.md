@@ -42,9 +42,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 docker-compose --version
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n
+bash n lts
 source ~/.bashrc
-nvm install node
 npm i -g yarn zx pnpm
 
 mkdir -p mx
