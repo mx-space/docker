@@ -28,7 +28,13 @@ async function main() {
 
   await $`git version`
   await $`docker -v`
-  await $`docker-compose -v`
+
+  try {
+    await $`docker compose version`
+  } catch {
+    console.error('Docker 版本过低，需要支持 compose 的 Docker')
+    process.exit(-1)
+  }
 
   const domain = await question('你的域名为：（需要提前绑定）')
 
@@ -65,18 +71,14 @@ async function main() {
     .toString(16)
     .slice(2, 2 + 10)} >> .env`
   await $`rm -rf kami`
-  try {
-    await $`git clone https://github.com/mx-space/kami --depth=1`
-  } catch {
-    await nothrow($`cd kami && git pull`)
-  }
+  await $`git clone https://github.com/mx-space/kami --depth=1`
 
   if (setupCaddy2) {
-    await $`docker-compose build`
-    await $`docker-compose up -d`
+    await $`docker compose build`
+    await $`docker compose up -d`
   } else {
-    await $`docker-compose build -f docker-compose.no-caddy.yml`
-    await $`docker-compose up -d -f docker-compose.no-caddy.yml`
+    await $`docker compose -f docker-compose.no-caddy.yml build`
+    await $`docker compose -f docker-compose.no-caddy.yml up -d`
     fs.createFileSync('./no-caddy')
   }
 }
@@ -86,5 +88,6 @@ async function main() {
     await main()
   } catch (e) {
     console.log(chalk.red(e.message))
+    process.exit(-1)
   }
 })()
