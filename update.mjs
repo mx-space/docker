@@ -1,7 +1,6 @@
 #!env zx
-try {
-  require('zx/globals')
-} catch {}
+// @ts-check
+import 'zx/globals'
 
 !(async () => {
   await $`cd kami && git pull`

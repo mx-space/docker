@@ -45,6 +45,7 @@ services:
     volumes:
       - ./data/mx-space:/root/mx-space
     command: node index.js --redis_host=redis --db_host=mongo --allowed_origins=${ALLOWED_ORIGINS} --jwt_secret=${JWT_SECRET} --cluster --color
+
     restart: 'on-failure'
     ports:
       - '2333:2333'
@@ -58,6 +59,7 @@ services:
       - app-network
     environment:
       - NODE_ENV=production
+      - TZ=Asia/Shanghai
 
   mongo:
     container_name: mongo

@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-
   app-kami:
     env_file:
       - .env
@@ -46,6 +45,7 @@ services:
       - app-network
     environment:
       - NODE_ENV=production
+      - TZ=Asia/Shanghai
 
   mongo:
     container_name: mongo

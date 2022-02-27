@@ -16,7 +16,7 @@ docker-compose --version
 zx 可以通过 npm 安装
 
 ```
-zx ./build.js
+zx ./build.mjs
 ```
 
 参考输入:
@@ -29,7 +29,7 @@ Your email is: tukon@gmail.com
 ## 更新
 
 ```
-zx ./update.js
+zx ./update.mjs
 ```
 
 ## 从零开始的部署过程
