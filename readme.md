@@ -26,6 +26,12 @@ Your domain name is: innei.ren
 Your email is: tukon@gmail.com
 ```
 
+## 更新
+
+```
+zx ./update.js
+```
+
 ## 从零开始的部署过程
 
 假设现在你有一台 Ubuntu 的服务器。还没有安装任何环境。并且你已经将域名解析到了服务器。复制以下脚本运行。
@@ -43,9 +49,12 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 docker-compose --version
 
 curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n
+export N_PREFIX=$HOME/.n
+export PATH=$N_PREFIX/bin:$PATH
 bash n lts
-source ~/.bashrc
-npm i -g yarn zx pnpm
+export N_PRESERVE_NPM=1
+npm i -g npm@latest
+npm i -g yarn zx pnpm n
 
 mkdir -p mx
 cd mx
