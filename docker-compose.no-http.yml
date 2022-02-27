@@ -1,18 +1,6 @@
 version: '3.8'
 
 services:
-  caddy:
-    container_name: caddy
-    image: caddy:2.4.5
-    ports:
-      - '80:80'
-      - '443:443'
-    volumes:
-      - $PWD/Caddyfile:/etc/caddy/Caddyfile
-    depends_on:
-      - app-kami
-    networks:
-      - app-network
 
   app-kami:
     env_file:
