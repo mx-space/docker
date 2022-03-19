@@ -41,6 +41,15 @@ curl -fsSL https://get.docker.com | bash -s docker
 # curl -sSL https://get.daocloud.io/docker | sh
 
 
+#下载 docker-compose
+wget https://shrill-pond-3e81.hunsh.workers.dev/https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-linux-x86_64
+#新建文件夹（非必须），可能需要
+sudo mkdir -p /usr/local/lib/docker/cli-plugins/
+# 复制到指定位置
+sudo cp ./docker-compose-linux-x86_64  /usr/local/lib/docker/cli-plugins/docker-compose
+# 赋予执行权限
+sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+
 curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n
 export N_PREFIX=$HOME/.n
 export PATH=$N_PREFIX/bin:$PATH
@@ -54,4 +63,17 @@ cd mx
 git clone https://github.com/mx-space/docker --depth=1
 cd docker
 zx ./build.js
+```
+
+CentOS Install Docker
+
+
+```bash
+sudo yum install -y yum-utils
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum install docker-ce docker-ce-cli containerd.io
+yum list docker-ce --showduplicates | sort -r
+sudo systemctl start docker
 ```
