@@ -38,7 +38,7 @@ services:
 
   app-server:
     container_name: mx-server
-    image: innei/mx-server:latest
+    image: innei/mx-server:3
     volumes:
       - ./data/mx-space:/root/mx-space
     command: node index.js --redis_host=redis --db_host=mongo --allowed_origins=${ALLOWED_ORIGINS} --jwt_secret=${JWT_SECRET} --cluster --color
