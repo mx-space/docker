@@ -26,15 +26,7 @@ async function main() {
   }
   // pre-check
 
-  await $`git version`
-  await $`docker -v`
-
-  try {
-    await $`docker compose version`
-  } catch {
-    console.error('Docker 版本过低，需要支持 compose 的 Docker')
-    process.exit(-1)
-  }
+  await preCheck()
 
   const domain = await question('你的域名为：（需要提前绑定）')
 
@@ -91,3 +83,31 @@ async function main() {
     process.exit(-1)
   }
 })()
+
+async function preCheck() {
+  try {
+    await $`git version`
+  } catch {
+    console.error('git 未安装')
+    process.exit(-1)
+  }
+  try {
+    await $`docker -v`
+  } catch {
+    console.error('docker 未安装')
+    process.exit(-1)
+  }
+
+  try {
+    await $`docker compose version`
+  } catch {
+    console.error('Docker 版本过低，需要支持 compose 的 Docker')
+    process.exit(-1)
+  }
+  try {
+    await $`git lfs version`
+  } catch {
+    console.error('git lfs 未安装')
+    process.exit(-1)
+  }
+}
