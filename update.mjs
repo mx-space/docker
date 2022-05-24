@@ -7,7 +7,7 @@ import 'zx/globals'
   await $`docker compose pull`
   let args = []
   if (fs.pathExistsSync(path.join(__dirname, './no-caddy'))) {
-    args.push('-f docker-compose.no-caddy.yml')
+    args.push('-f', 'docker-compose.no-caddy.yml')
   }
   await $`docker compose ${args.join(' ')} build`
   await $`docker compose ${args.join(' ')} up -d`
