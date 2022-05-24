@@ -42,7 +42,8 @@ curl -fsSL https://get.docker.com | bash -s docker
 
 
 #下载 docker-compose
-wget https://shrill-pond-3e81.hunsh.workers.dev/https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-linux-x86_64
+wget https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-linux-x86_64
+#备用 wget https://download.fastgit.org/docker/compose/releases/download/v2.5.0/docker-compose-linux-x86_64
 #新建文件夹（非必须），可能需要
 sudo mkdir -p /usr/local/lib/docker/cli-plugins/
 # 复制到指定位置
