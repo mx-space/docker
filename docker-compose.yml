@@ -13,13 +13,13 @@ services:
       - app-kami
     networks:
       - app-network
-    restart: always
-
+    restart: on-failure:16
   app-kami:
     env_file:
       - .env
     container_name: mx-kami
-    restart: always
+    restart: on-failure:16
+
     ports:
       - '2323:2323'
     build:
@@ -44,7 +44,8 @@ services:
       - ./data/mx-space:/root/mx-space
     command: node index.js --redis_host=redis --db_host=mongo --allowed_origins=${ALLOWED_ORIGINS} --jwt_secret=${JWT_SECRET} --cluster --color
 
-    restart: always
+    restart: on-failure:16
+
     ports:
       - '2333:2333'
     depends_on:
@@ -68,7 +69,8 @@ services:
       - '3344:27017'
     networks:
       - app-network
-    restart: always
+    restart: on-failure:16
+
   redis:
     image: redis
     container_name: redis
@@ -77,7 +79,8 @@ services:
       - '3333:6379'
     networks:
       - app-network
-    restart: always
+    restart: on-failure:16
+
 networks:
   app-network:
     driver: bridge
