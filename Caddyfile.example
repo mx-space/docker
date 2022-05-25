@@ -4,7 +4,7 @@
     reverse_proxy app-server:2333
   }
 
-  handle /proxy/qaqdmin {
+  handle /proxy/* {
     reverse_proxy app-server:2333
   }
 
