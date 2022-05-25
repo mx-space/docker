@@ -69,7 +69,7 @@ services:
       - '3344:27017'
     networks:
       - app-network
-    restart: on-failure:16
+    restart: always
 
   redis:
     image: redis
@@ -79,7 +79,7 @@ services:
       - '3333:6379'
     networks:
       - app-network
-    restart: on-failure:16
+    restart: always
 
 networks:
   app-network:
