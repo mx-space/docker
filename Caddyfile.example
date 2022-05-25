@@ -3,6 +3,18 @@
   handle /qaqdmin {
     reverse_proxy app-server:2333
   }
+
+  handle /proxy/qaqdmin {
+    reverse_proxy app-server:2333
+  }
+
+  handle /api/v2 {
+    reverse_proxy app-server:2333 {
+      header_up Host {host}
+      header_up X-Real-IP {remote}
+    }
+  }
+
   handle /api/v2/* {
     reverse_proxy app-server:2333 {
       header_up Host {host}
@@ -18,6 +30,7 @@
       header_up X-Real-IP {remote}
     }
   }
+
 
   handle /* {
     reverse_proxy app-kami:2323

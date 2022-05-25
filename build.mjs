@@ -62,6 +62,7 @@ async function main() {
   await $`echo JWT_SECRET=${Math.random()
     .toString(16)
     .slice(2, 2 + 10)} >> .env`
+  await $`echo ALLOWED_ORIGINS=${domain} >> .env`
   await $`rm -rf kami`
   await $`git clone https://github.com/mx-space/kami --depth=1`
 
