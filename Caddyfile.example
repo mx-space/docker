@@ -15,6 +15,18 @@
     }
   }
 
+  handle /feed {
+    reverse_proxy app-server:2333
+  }
+
+  handle /atom.xml {
+    reverse_proxy app-server:2333
+  }
+
+  handle /sitemap {
+    reverse_proxy app-server:2333
+  }
+
   handle /api/v2/* {
     reverse_proxy app-server:2333 {
       header_up Host {host}
