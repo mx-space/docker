@@ -26,6 +26,9 @@
   handle /sitemap {
     reverse_proxy app-server:2333
   }
+  handle /render {
+    reverse_proxy app-server:2333
+  }
 
   handle /api/v2/* {
     reverse_proxy app-server:2333 {

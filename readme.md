@@ -77,3 +77,9 @@ sudo yum install docker-ce docker-ce-cli containerd.io
 yum list docker-ce --showduplicates | sort -r
 sudo systemctl start docker
 ```
+
+## 如果你选择 Nginx...
+
+如果选择 Nginx 作为服务器。这里也提供一份反向代理的配置文件。
+
+在 [nginx.conf](./configs/nginx.conf) 查看。
