@@ -5,6 +5,7 @@
   }
 
   handle /proxy/* {
+    rewrite * /
     reverse_proxy app-server:2333
   }
 
@@ -16,18 +17,25 @@
   }
 
   handle /feed {
+    rewrite * /
     reverse_proxy app-server:2333
   }
 
   handle /atom.xml {
+    rewrite * /
     reverse_proxy app-server:2333
   }
 
   handle /sitemap {
+    rewrite * /
     reverse_proxy app-server:2333
   }
   handle /render/* {
-    reverse_proxy app-server:2333
+    rewrite * /
+    reverse_proxy app-server:2333 {
+      header_up Host {host}
+      header_up X-Real-IP {remote}
+    }
   }
 
   handle /api/v2/* {
