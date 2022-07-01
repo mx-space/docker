@@ -65,6 +65,7 @@ async function main() {
   await $`echo ALLOWED_ORIGINS=${domain} >> .env`
   await $`rm -rf kami`
   await $`git clone https://github.com/mx-space/kami --depth=1`
+  await $`cd kami && git fetch --tags && latestTag=$(git describe --tags \`git rev-list --tags --max-count=1\`) && git checkout $latestTag && cd ..`
 
   if (setupCaddy2) {
     await $`docker compose build`

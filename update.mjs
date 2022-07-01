@@ -3,7 +3,7 @@
 import 'zx/globals'
 
 !(async () => {
-  await $`cd kami && git pull`
+  await $`cd kami && git pull &&  git fetch --tags && latestTag=$(git describe --tags \`git rev-list --tags --max-count=1\`) && git checkout $latestTag`
   await $`docker compose pull`
   let args = []
   if (fs.pathExistsSync(path.join(__dirname, './no-caddy'))) {
