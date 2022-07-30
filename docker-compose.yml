@@ -28,7 +28,7 @@ services:
         BASE_URL: '${BASE_URL}'
     depends_on:
       - app-server
-    command: 'npx next start -p 2323'
+    command: 'node server.js'
     environment:
       NODE_ENV: production
     networks:
