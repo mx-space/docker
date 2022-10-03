@@ -26,7 +26,7 @@ preCheck() {
 # main
 
 if [ -e "${PWD}/Caddyfile" ] || [ -e "${PWD}/.env" ]; then
-  read -p "已经构建过了，是否重新构建，(需要更新请执行 update.mjs) [y/N]" choice
+  read -p "已经构建过了，是否重新构建，(需要更新请执行 update.sh) [y/N]" choice
   if [ "$choice" = "y" ]; then
     rm -rf .env
     rm -rf Caddyfile
