@@ -1,12 +1,12 @@
-version: '3.8'
+version: "3.8"
 
 services:
   caddy:
     container_name: caddy
     image: caddy:2.4.5
     ports:
-      - '80:80'
-      - '443:443'
+      - "80:80"
+      - "443:443"
     volumes:
       - $PWD/Caddyfile:/etc/caddy/Caddyfile
     depends_on:
@@ -18,17 +18,17 @@ services:
     env_file:
       - .env
     container_name: mx-kami
-    restart: 'on-failure'
+    restart: "on-failure"
     ports:
-      - '2323:2323'
+      - "2323:2323"
     build:
       context: ./kami
       args:
         NODE_ENV: production
-        BASE_URL: '${BASE_URL}'
+        BASE_URL: "${BASE_URL}"
     depends_on:
       - app-server
-    command: 'node server.js'
+    command: "node server.js"
     environment:
       NODE_ENV: production
     networks:
@@ -43,9 +43,9 @@ services:
       - ./data/mx-space:/root/.mx-space
     command: node index.js --redis_host=redis --db_host=mongo --allowed_origins=${ALLOWED_ORIGINS} --jwt_secret=${JWT_SECRET} --cluster --color
 
-    restart: 'on-failure'
+    restart: "on-failure"
     ports:
-      - '2333:2333'
+      - "2333:2333"
     depends_on:
       - mongo
       - redis
@@ -58,7 +58,7 @@ services:
       - NODE_ENV=production
       - TZ=Asia/Shanghai
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:2333/info']
+      test: ["CMD", "curl", "-f", "http://localhost:2333/info"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -70,7 +70,7 @@ services:
     volumes:
       - ./data/db:/data/db
     ports:
-      - '3344:27017'
+      - "127.0.0.1:3344:27017"
     networks:
       - app-network
 
@@ -78,8 +78,6 @@ services:
     image: redis
     container_name: redis
 
-    ports:
-      - '3333:6379'
     networks:
       - app-network
 networks:
