@@ -30,7 +30,7 @@ bash ./update.sh
 假设现在你有一台 Ubuntu 的服务器。还没有安装任何环境。并且你已经将域名解析到了服务器。复制以下脚本运行。
 
 ```bash
-sudo apt update && sudo apt install git curl vim wget -y
+sudo apt update && sudo apt install git git-lfs curl vim wget -y
 curl -fsSL https://get.docker.com | bash -s docker
 
 mkdir -p mx
